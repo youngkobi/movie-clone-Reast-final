@@ -1,13 +1,13 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import s_icon from "../assets/spyglass-icon.webp";
+import s_icon from "../assets/spyglass-icon.png";
 
-const Search = () => {
+const Search = ({searchterm, setSearchterm}) => {
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
   const [movies, setMovies] = useState([]);
-  const [searchterm, setSearchterm] = useState();
+ 
 
   function onSearch() {
     fetchMovies(searchterm);
@@ -16,7 +16,7 @@ const Search = () => {
   function filterBooks(filter) {
     if (filter === "Old_To_New") {
       const sortedMovies = [...movies].sort(
-        (a, b) => parseInt(a.year) - parseInt(b.year)
+        (a, b) => parseInt(a.Year) - parseInt(b.Year)
       );
       setMovies(sortedMovies);
     } else if (filter === "New_to_Old") {
@@ -26,7 +26,7 @@ const Search = () => {
   }
 
   useEffect(() => {
-    fetchMovies(() => searchterm(""));
+    fetchMovies(searchterm);
   }, []);
 
   async function fetchMovies(movieId) {
@@ -35,7 +35,7 @@ const Search = () => {
       `https://omdbapi.com/?s=${searchterm}&apikey=32588a38`
     );
     console.log(data.Search);
-    setMovies(data.Search);
+    setMovies(data.Search || []);
     setLoading(false);
   }
 
@@ -54,13 +54,16 @@ const Search = () => {
               onKeyPress={(event) => event.key === "Enter" && onSearch()}
             />
           </div>
+          {loading ?
+          <div className="loader"></div>
+          :
           <img
             src={s_icon}
             alt=""
             width={20}
             onClick={() => onSearch()}
             className="search_icon"
-          />
+          />}
         </div>
         <div id="search__title">
           <h2> Search Results for: {searchterm}</h2>

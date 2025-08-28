@@ -12,10 +12,20 @@ const Navbar = () => {
         <h1 className='navbar_title'> KobiDevs</h1>
     </div>
     <div>
-    <button 
+      <ul>
+<li>
+<button 
     onClick={()=>navigate('/')}
     className='homeButton'
     >Home</button>
+</li>
+<li>
+<button 
+    onClick={()=>navigate('/')}
+    className='homeButton-contact'
+    >Contact</button>
+</li>
+</ul>    
     </div>
     </div>
   )

@@ -1,19 +1,30 @@
 import React, { useState } from 'react'
-import s_icon from "../assets/spyglass-icon.webp"
+import s_icon from "../assets/spyglass-icon.png"
 import m_icon from '../assets/moviestack-icon.jpg'
 import { useNavigate } from 'react-router-dom'
 
-const Home = () => {
-const [searchterm, setSearchterm] = useState()
+const Home = ({searchterm, setSearchterm}) => {
+
 const navigate = useNavigate()
+ const [loading, setLoading] = useState(false);
+
 
 
 function onSearch() {
-   navigate('/search')
-   console.log(searchterm);
+  setLoading(true)
+  
+  
+  setTimeout(() => {
+    navigate('/search')
+  }, 2000);
+  console.log(searchterm);
+
+
    
     
 }
+
+
 
 
   return (
@@ -31,9 +42,14 @@ function onSearch() {
         onChange={(event) => setSearchterm(event.target.value)}
         onKeyPress={(event)=> event.key === 'Enter' && onSearch()}
     />
-    <img src={s_icon} alt=""  width={40}
+    {
+      loading ? 
+      <div class="loader"></div>
+        :
+      <img src={s_icon} alt=""  width={40}
     onClick={()=>onSearch()}
-    />
+    className='s_icon'
+/>}
     </div>
     </div>
   )

@@ -115,7 +115,7 @@ p {
   align-content: center;
   justify-content: center;
   padding: 20px;
-  background-color: red;
+  background-color: lightgray;
 }
 
 
@@ -305,6 +305,8 @@ button{
 
   .home_title-img{
     border-radius: 24px;
+    width: 30%;
+    margin-top: 15px;
   }
 
   .home_divider{
@@ -328,5 +330,46 @@ button{
   .form-control{
     width: 100vh;
     height: 25px;
+    border-radius: 6px;
   }
 
+
+  .spinner{
+
+  }
+
+  .loader {
+  border: 6px solid red;
+  border-radius: 50%;
+  border-top: 6px solid white;
+  width: 20px;
+  height: 20px;
+  -webkit-animation: spin 2s linear infinite; /* Safari */
+  animation: spin 2s linear infinite;
+}
+
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+ul{
+  list-style-type: none;
+  display: flex;
+  gap: 10%;
+}
+
+.homeButton-contact{
+   font-size: 25px;
+    font-weight: 500;
+    color: lightgray;
+    background-color: black;
+    border-radius: 14px;
+    padding: 16px;
+    cursor: not-allowed;
+}
+
+.s_icon{
+  filter: hue-rotate(90deg);
+}
