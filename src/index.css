@@ -140,12 +140,6 @@ p {
 .input__wrap{
  position: relative;
 } 
-.glass__wrap {
-    position: absolute;
-    top: 10%;
-    right: 2%;
-    /* z-index: 100; */
-}
 
 .books__loading{
   display: flex;
@@ -174,10 +168,16 @@ button{
   border: transparent;
 }
 
-.movie-poster img{
+.movie-poster{
   max-width: 300px;
   margin: 0 auto;
   border: 4px solid #fff;
+}
+
+.movie-info{
+  background-color: lightgray;
+  margin: 0 auto;
+  padding: 16px 86px;
 }
 
 
@@ -199,7 +199,6 @@ button{
 }
 
 .movie-info .writer{
-  padding: 0.5rem;
   margin: 1rem 0;
 }
 
@@ -212,7 +211,7 @@ button{
 
 .movie-info .plot{
   max-width: 400px;
-  margin: 1rem auto;
+  margin: 1rem, 0;
 }
 
 .movie-info .language{
@@ -241,9 +240,93 @@ button{
   align-items: center;
   justify-content: center;
   padding: 1rem;
+  background-color: red;
+  border-radius: 28px;
 }
 
  .result-grid{
     display: grid;
     grid-template-columns: repeat(2,1fr);
   }
+
+  .navbar{
+    background: red;
+    display: flex;
+    padding: 10px;
+    justify-content: space-around;
+    align-items: center;
+    
+  }
+
+  .homeButton{
+    font-size: 25px;
+    font-weight: 500;
+    color: red;
+    background-color: lightgray;
+    border-radius: 14px;
+    padding: 16px;
+  }
+
+.navbar_title{
+  color: white;
+}
+
+
+  .input_div{
+    align-items: center;
+    display: flex;
+    justify-content: center;
+  }
+  .home_input{
+    width: 100vh;
+    height: 15px;
+    padding: 16px;
+    border-radius: 10px;
+    border: none;
+    margin: 10px;
+  }
+
+  .home_title{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    max-width: 50%;
+    margin: 0 auto;
+    margin-top: 60px;
+    flex-direction: column;
+  }
+
+  .home_title-wrapper{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+  }
+
+  .home_title-img{
+    border-radius: 24px;
+  }
+
+  .home_divider{
+    height: 1px;
+    width: 100%;
+    background-color: black;
+    padding: 1px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+
+  .red{
+    color: white;
+  }
+
+  .search_icon{
+  height: 30px;
+  padding-left: 5px;
+  }
+
+  .form-control{
+    width: 100vh;
+    height: 25px;
+  }
+

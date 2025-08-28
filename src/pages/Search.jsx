@@ -1,6 +1,7 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import s_icon from "../assets/spyglass-icon.webp"
 
 
 
@@ -10,24 +11,38 @@ const Search = () => {
 
 const navigate = useNavigate()
 const [loading, setLoading] = useState(false)
-const [moives, setMoives] = useState([])
-const [movie, setMovie] = useState({})
+const [movies, setmovies] = useState([])
 const [searchterm, setSearchterm] = useState()
 
 function onSearch() {
-    fetchMoives(searchterm)
+    fetchMovies(searchterm)
     
 }
 
+function filterBooks(filter){
+    if(filter === "Old_To_New"){
+        movies.sort((a,b)=> parseInt(a.year) - parseInt(b.year))
+      }
+      else if(filter === "New_to_Old"){
+        movies.sort((a,b)=> parseInt(b.Year) - parseInt(a.Year))
+      }
+      
+}
+
+
 useEffect(() =>{
-    fetchMoives(()=>searchterm(""))
+    fetchMovies(()=>searchterm(""))
+    filterBooks()
 },[])
 
 
-async function fetchMoives(moiveId){
+async function fetchMovies(movieId){
+    setLoading(true)
 const {data} = await axios.get(`https://omdbapi.com/?s=${searchterm}&apikey=32588a38`)
 console.log(data.Search)
-setMoives(data.Search)
+setmovies(data.Search)
+setLoading(false)
+
 
 
 }
@@ -47,41 +62,43 @@ setMoives(data.Search)
         onChange={(event) => setSearchterm(event.target.value)}
         onKeyPress={(event)=> event.key === 'Enter' && onSearch()}
         />
-        <div className="glass__wrap">
-          <button>
-            <i className="fa-solid fa-magnifying-glass"></i>
-          </button>
-        </div>
-      </div>
+    </div>
+        <img src={s_icon} alt=""  width={20}
+    onClick={()=>onSearch()}
+    className='search_icon'
+    />
+
       </div>
         <div id="search__title">
-        <h2> Search Results for:</h2>
+        <h2> Search Results for: {searchterm}</h2>
           </div>
           <div className= "books">
              <i className="fa-solid fa-spinner books__loading--spinner" ></i>
 
          
            </div>
-              <select id="filter" defaultValue="sort">
+              <select id="filter" defaultValue="sort"
+              onChange={(event)=>filterBooks(event.target.value)}>
             <option value="sort" disabled >Sort</option>
             <option value="Old_To_New">Old to New</option>
             <option value="New_to_Old">New to Old</option>
           </select>
       <div className="user-list">
 
-{ searchterm === undefined ? 
+{ loading 
+    ? new Array(6).fill(0).map((element, index) => ( 
 
- <div class="user-card">
-            <div class="user-card__container">
-              <h3>There are no Movies that match that title </h3>
-                <p>Please Look at the search and try again</p>
+ <div className="user-card" key={index}>
+            <div className="user-card__container">
+              <h3>Loading</h3>
+                <p>Please Wait</p>
       
             </div>
-          </div> 
+          </div> ))
 : 
-moives.map((movie)=>(
+movies.map((movie,index)=>(
             (
-        <div className="user">
+        <div className="user" key={movie.imdbID}>
           <div className="user-card"
            onClick={()=> navigate(`/${movie.imdbID}`)}>
             <div className="user-card__container">

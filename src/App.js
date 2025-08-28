@@ -2,10 +2,14 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Search from "./pages/Search";
 import Movie from "./pages/Movie";
 import Home from "./pages/Home";
+import Navbar from "./components/navbar";
+
 
 function App() {
   return (
+   
     <Router>
+       <Navbar />
       <div>
         <Routes>
 

@@ -21,40 +21,35 @@ const Movie = () => {
   }
 
   return (
-    <> 
-    { movie.map(()=> (
+    <div> 
       <div className="result-grid">
         <div className="movie-poster">
-          <img src="medium-cover.jpg" alt="" />
+          <img src={movie.Poster} alt="" />
         </div>
         <div className="movie-info">
-          <h3 className="movie-title">Guardins of the galaxy vol.2</h3>
+          <h3 className="movie-title">{movie.Title}</h3>
           <ul className="movie-misc-info">
-            <li className="year"> Year:2017</li>
-            <li className="rated">Ratings: PG-13</li>
-            <li className="released"> Released 05 May</li>
+            <li className="year"> Year: {movie.Year} </li>
+            <li className="rated">Ratings: {movie.Rated} </li>
+            <li className="released"> Released {movie.Released}</li>
           </ul>
-          <p className="genre">Action,adventure comdedy</p>
+          <p className="genre">{movie.Genre}</p>
           <p className="writer">
-            <b>Write :</b> James Gunn, Don abnett, andy Lanning
+            <b>Write :</b> {movie.Writer}
           </p>
           <p className="actors">
-            <b>Actors:</b> Chriss Pratt, Zoe Saldana, Dave{" "}
+            <b>Actors:</b> {movie.Actors}
           </p>
-          <p className="plot">THe Guardins struggle to keep together</p>
+          <p className="plot"> {movie.Plot}</p>
           <p className="language">
-            <b>language</b>ENglish
+            <b>language</b> {movie.Language}
           </p>
-          <p className="awards">
-            {" "}
-            <i className="fa-solid fa-award"></i> Nominated for 1 oscar
+          <p className="awards"> {movie.Awards}
           </p>
         </div>
       </div>
-      ))
-      }
    
-    </>
+    </div>
   );
 };
 export default Movie;
